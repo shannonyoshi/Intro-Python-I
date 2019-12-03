@@ -21,4 +21,25 @@ and does the following:
 
 import sys
 import calendar
-from datetime import datetime
+from datetime import date
+
+userInput = input("Enter a date")
+
+
+def createCal(userInput):
+    c = calendar.TextCalendar(calendar.SUNDAY)
+    today = date.today()
+    inputArray = userInput.split()
+    calStr = ""
+    if len(inputArray) == 0:
+        calStr = c.formatmonth(today.year, today.month)
+    elif len(inputArray) == 1:
+        calStr = c.formatmonth(today.year, int(userInput))
+    elif len(inputArray) == 2:
+        calStr = c.formatmonth(int(inputArray[1]), int(inputArray[0]))
+    else:
+        calStr = "You did something wrong"
+    print(calStr)
+
+
+createCal(userInput)
